@@ -6,8 +6,9 @@ Simulation of the switching of processes with custom instruction set. The contex
 Usage:
 1. Open bash and type in the commands specified below.
 2. These commands should be typed without double quotes.
-    gcc -pthread -o "executable_name" launchMain.c
-    ./"executable_name"
+
+gcc -pthread -o "executable_name" launchMain.c
+./"executable_name"
     
 Results:
 Based on the option chosen by you during the execution of "launchMain.c", results can be viewed in 2 different files.
