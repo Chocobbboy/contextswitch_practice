@@ -12,6 +12,6 @@ Usage:
     ./"executable_name"
     
 Results:
-Based on the option chosen by you during the execution of "launchMain.c", results can be viewed in 2 different files.
+Based on the option chosen by you during the execution of "launchMain.c", logs will be stored in in 2 different files.
 1. Implementation with threads -> logs_rr_with_thread
 2. Implementation without threads -> logs_rr_without_thread
