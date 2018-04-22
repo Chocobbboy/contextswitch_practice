@@ -1,8 +1,7 @@
 # Context-Switching
 A multithreaded simulation of the process switching mechanism in operating systems. This was my project in "Operating Systems" course.
 
-Simulation of the process switching mechanism with custom instruction set. The context of the processes was saved enabling the 
-process to resume execution from the last saved state.
+Simulation of the process switching mechanism with custom instruction set. The context of the processes was saved enabling processes to resume execution from the last saved state.
 
 Usage:
 1. Open bash and type in the commands specified below.
