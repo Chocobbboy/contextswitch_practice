@@ -1,7 +1,7 @@
 # Context-Switching
 A multithreaded simulation of the process switching mechanism in operating systems. This was my project in "Operating Systems" course.
 
-Simulation of the switching of processes with custom instruction set. The context of the processes was saved enabling the 
+Simulation of the process switching mechanism with custom instruction set. The context of the processes was saved enabling the 
 process to resume execution from the last saved state.
 
 Usage:
