@@ -10,7 +10,7 @@ Simulation of the process switching mechanism with custom instruction set. The c
     gcc -pthread -o "executable_name" launchMain.c <br/>
     ./"executable_name"
     
-<strong>Note:</strong> Recent execution of the code has revealed some peculiarities. The code runs on Ubuntu 16.04 but not on Ubuntu 18.04. Based on a preliminary search, it seems that this is caused due to the gcc uncompatibility with Ubuntu 18.04. It is probably caused due to some changes in the 'newlib' library. You can read more about the bugs here: [Github issues](https://github.com/travisgoodspeed/md380tools/issues/871) | [Launchpad Bug page](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1772332)
+<strong>Note:</strong> Recent execution of the code has revealed some peculiarities. The code runs on Ubuntu 16.04 but not on Ubuntu 18.04. Based on a preliminary search, it seems that this is caused due to the gcc uncompatibility with Ubuntu 18.04. It is probably caused due to some changes in the 'newlib' library. You can read more about the bug here: [Github issues](https://github.com/travisgoodspeed/md380tools/issues/871) | [Launchpad Bug page](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1772332)
 
 <strong>Description of files:</strong>
 1. opcode.txt - Each line contains the operation code and is integer representation separated by a space.
