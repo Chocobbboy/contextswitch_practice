@@ -6,7 +6,7 @@ A custom instruction set was used for simulation which consisted of some simple 
 ### Description of files:
 <strong>1. opcode.txt</strong> - Each line contains the operation code and its integer representation separated by a space.<br>
 <strong>2. variables.txt</strong> - Each line contains the name of the variable and its current value.<br>
-<strong>3. processes/filein_(1/2/3/4/5).txt</strong><br> - Each file contains instructions and this file denotes a process. <br>
+<strong>3. processes/filein_(1/2/3/4/5).txt</strong> - Each file contains instructions and this file denotes a process. <br><br>
 Each process contains a set of instructions with the format as: <strong> opcode operand1 operand2 result_variable </strong>
 
 # Results
