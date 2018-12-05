@@ -6,9 +6,8 @@ A custom instruction set was used for simulation which consisted of some simple 
 ### Description of files:
 <strong>1. opcode.txt</strong> - Each line contains the operation code and is integer representation separated by a space.<br>
 <strong>2. variables.txt</strong> - Each line contains the name of the variable and its current value.<br>
-<strong>3. processes/filein_(1/2/3/4/5).txt</strong> - Each file contains a set of instructions.<br>
-The instruction format is as follows: <br>
-opcode operand1 operand2 result_variable
+<strong>3. processes/filein_(1/2/3/4/5).txt</strong><br>
+Each file contains a set of instructions with the format as: <strong> opcode operand1 operand2 result_variable </strong>
 
 # Results
 Based on the option chosen by you during the execution of "launchMain.c", logs will be stored in in 2 different files. 
