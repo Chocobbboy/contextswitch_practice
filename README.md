@@ -17,8 +17,8 @@ Based on the option chosen by you during the execution of "launchMain.c", logs w
 
 # Usage
 1. Open bash and type the commands specified below: <br/>
-    gcc -pthread -o "executable_name" launchMain.c <br/>
-    ./"executable_name"
+        gcc -pthread -o "executable_name" launchMain.c <br/>
+        ./"executable_name"
     
 <strong>Note:</strong> Recent execution of the code has revealed some peculiarities. The code runs on Ubuntu 16.04 but not on Ubuntu 18.04. Based on a preliminary search, it seems that this is caused due to the gcc compatibility issue with Ubuntu 18.04, primarily because of some changes in the 'newlib' library. You can read more about the bug here: [Github issues](https://github.com/travisgoodspeed/md380tools/issues/871) | [Launchpad Bug page](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1772332)
 
