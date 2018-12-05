@@ -16,7 +16,7 @@ Based on the option chosen by you during the execution of "launchMain.c", logs w
 2. Implementation without threads -> logs_rr_without_thread
 
 # Usage
-1. Open bash and type the commands specified below:
+1. Open bash and type the commands specified below: <br/>
     gcc -pthread -o "executable_name" launchMain.c <br/>
     ./"executable_name"
     
