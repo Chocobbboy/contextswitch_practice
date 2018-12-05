@@ -4,10 +4,10 @@ A multithreaded simulation of the process switching mechanism in operating syste
 A custom instruction set was used for simulation which consisted of some simple operations. The context of the processes consists of the value of variables which are saved in the 'variables.txt' file. This allows the processes to resume from last instruction executed with value of variables intact.
 
 ### Description of files:
-<strong>1. opcode.txt</strong> - Each line contains the operation code and is integer representation separated by a space.<br>
+<strong>1. opcode.txt</strong> - Each line contains the operation code and its integer representation separated by a space.<br>
 <strong>2. variables.txt</strong> - Each line contains the name of the variable and its current value.<br>
-<strong>3. processes/filein_(1/2/3/4/5).txt</strong><br>
-Each file contains a set of instructions with the format as: <strong> opcode operand1 operand2 result_variable </strong>
+<strong>3. processes/filein_(1/2/3/4/5).txt</strong><br> - Each file contains instructions and this file denotes a process. <br>
+Each process contains a set of instructions with the format as: <strong> opcode operand1 operand2 result_variable </strong>
 
 # Results
 Based on the option chosen by you during the execution of "launchMain.c", logs will be stored in in 2 different files. 
