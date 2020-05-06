@@ -1,5 +1,5 @@
 # Context-Switching
-A multithreaded simulation of the process switching mechanism in operating systems. This was my project in "Operating Systems" course.
+A multithreaded simulation of the process switching mechanism in operating systems. This was my project in "CSC 340: Operating Systems" course at Ahmedabad University.
 
 A custom instruction set was used for simulation which consisted of some simple operations. The context of the processes consists of the value of variables which are saved in the 'variables.txt' file. This allows the processes to resume from last instruction executed with value of variables intact.
 
