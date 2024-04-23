@@ -29,13 +29,17 @@ void pcbInitialize(int ch)
     // seed for random function - to generate random no. everytime
     srand(time(0)); 
     time_t t=time(0);
-
+char pname[10][50];
     // navigating to directory using shell commands
-    /* system("cd processes");
+    /*
+    char* line = (char*)calloc(4096, sizeof(char));
+    char* line1 = (char*)calloc(4096, sizeof(char));
+     system("cd processes");
     system("ls > lsout.txt");
     system("echo $PWD > dirPath.txt");
 
     FILE *fp=fopen("dirPath.txt", "r");
+    char* temp = (char*)calloc(4096, sizeof(char));
     while(fgets(line,sizeof(line),fp))
     {
         strcpy(temp,line);
@@ -56,15 +60,17 @@ void pcbInitialize(int ch)
         line1[strlen(line1)]='\0';
         printf("line1: %s\n\n", line1);
         strcpy(pname[noOfFiles], line1);
-        printf("pname[noOfFiles]=%s", pname[noOfFiles]);
+        printf("pname[%d]=%s\n", noOfFiles, pname[noOfFiles]);
         noOfFiles++;
     }
-    fclose(fin); */
-
+    fclose(fin); 
+    printf("show some demo\n");
+exit(1);
+*/
     // fetching process files from "processes" directory
     struct dirent *dp;
-    char pname[10][50];
-    char folder[]="processes/";
+    
+    //char folder[]="processes/";
 
     DIR *fd; // pointer to directry
     fd=opendir("processes"); // open processes directry
@@ -74,14 +80,16 @@ void pcbInitialize(int ch)
         // skip self and parent
         if (!strcmp(dp->d_name, ".") || !strcmp(dp->d_name, ".."))
             continue;    
-
-        char  folder[]="processes/";
+            
+        char* folder = (char*)calloc(25, sizeof(char));
+        strcat(folder, "processes/");
         strcat(folder,dp->d_name);
 
         // copy the relative file name in pname[i]
         strcpy(pname[noOfFiles],folder);
         
         // increment the index for "pname" array
+        printf("pname[%d]=%s\n", noOfFiles, pname[noOfFiles]);
         noOfFiles++; 
     }
     closedir(fd);
@@ -136,6 +144,9 @@ void pcbInitialize(int ch)
 
         fclose(f1);
     }
+
     fprintf(fplog, "\n");
     fclose(fplog);
+        
+return;
 }

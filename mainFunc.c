@@ -51,6 +51,7 @@ void * thread_execution(void * pid)
 
         if(noOfTimes[i] > time_slice)
         {
+        
         	// will execute till time_slice comes
         	cnt2=time_slice;		
 
@@ -58,11 +59,10 @@ void * thread_execution(void * pid)
 			{
 				// print process execution trace in log file
 				fprintf(fplog, "\nProcess name: %s\n", p_queue[i].p_name); 
-				// printf("\nProcess name: %s\n", p_queue[i].p_name);
 				
 				// fetch a line from file of process currently under execution
 				fgets(line,sizeof(line),fptr);
-					
+					printf("in loop 1: instr = %s\n", line);
 	        	decodeExec(line,fplog); // calling "decodeExec" function
 	        	p_queue[i].insNo++; // updating the number of instructions of process executed 
 		            
@@ -70,11 +70,13 @@ void * thread_execution(void * pid)
 			}        	
         		
 	        noOfTimes[i]-=time_slice; // subtracting the number of instructions executed in this loop
+	        
         }
 
         // this thread will have finished after this turn
         else if(noOfTimes[i] > 0 && noOfTimes[i] <= time_slice)
         {
+        
         	while(p_queue[i].insNo!=p_queue[i].cpu_burst_time)
         	{
         		// print process execution trace in log file
@@ -83,57 +85,54 @@ void * thread_execution(void * pid)
 
         		// fetch a line from file of process currently under execution
 				fgets(line,sizeof(line),fptr);
-				
-        		decodeExec(line,fplog); // calling "decodeExec" function
+				printf("in loop 2: instr = %s\n", line);
+        		if(line[0] != '/'){decodeExec(line,fplog);} // calling "decodeExec" function
         		p_queue[i].insNo++; // updating the number of instructions of particular file executed 
 	                     
 	            // sleep((unsigned int)noOfTimes[i]); // sleep is to simulate the actual running time
         	}
+        	
 	        noOfTimes[i] = 0; // to terminate the loop
+	        
         }
         fprintf(fplog, "\n----------\n");
+        
         SwitchThread(i); // calling SwitchThread function
     }
     pthread_exit(0); // exiting Thread
 }
 
-int mainFunc(int ch)
-{
+int mainFunc(int ch){
 	// initialize PCB for all processes
 	pcbInitialize(ch);
 
-	if(ch==1)
-	{
+	if(ch==1){
 		fplog=fopen("logs_rr_with_thread","a");
 		pthread_t threads[MAX];
-	    int i, status;
+	    	int i, status;
 
-	    for(i=0; i<MAX; i++)
-	        noOfTimes[i] = p_queue[i].cpu_burst_time; // input the burst time of each thread
+	        for(i=0; i<MAX; i++)
+	        	noOfTimes[i] = p_queue[i].cpu_burst_time; // input the burst time of each thread
 
-	    for(i=0; i<MAX; i++)
-	    {
-	    	// create 1 thread for each process
-	        status=pthread_create(&threads[i], NULL, thread_execution, (void *)i); 
+	        for(i=0; i<MAX; i++){
+	    		// create 1 thread for each process
+	        	status=pthread_create(&threads[i], NULL, thread_execution, (void *)i); 
 
-	        // check if error in thread creation
-	        if(status!= 0)
-	        {
-	            printf("While creating thread %d, pthread_create returned error code %d\n", i, status);
-	            exit(-1);
-	        }       
-	    }
+	        	// check if error in thread creation
+	        	if(status!= 0){
+	            		printf("While creating thread %d, pthread_create returned error code %d\n", i, status);
+	            		exit(-1);
+	        	}       
+	    	}
+ 
+	        for(i=0;i<MAX;i++)
+	    	     pthread_join(threads[i], 0); // terminate the main program only after all threads terminate
 
-	    for(i=0;i<MAX;i++)
-	    	pthread_join(threads[i], 0); // terminate the main program only after all threads terminate
+	    	fprintf(fplog, "\n<--- END of Log file --->");
+	    	fclose(fplog);
 
-	    fprintf(fplog, "\n<--- END of Log file --->");
-	    fclose(fplog);
-
-	    printf("\nLog file 'logs_rr_with_thread' generated!\n");
-	}
-	else
-	{
+	    	printf("\nLog file 'logs_rr_with_thread' generated!\n");
+	}else{
 		// file pointer of 'logs_rr_without_thread' file
 		FILE *fplog=fopen("logs_rr_without_thread","a");
 
@@ -162,18 +161,16 @@ int mainFunc(int ch)
 			time_slice=2; 
 
 			// if all processes have completed execution
-			if(counter==MAX)
+			if(counter==MAX){
 				break;
 
 			// if 'i' has reached MAX, bring it back in range of 0-4
-			else if(i==MAX)
+			}else if(i==MAX){
 				i=0;
 
-			else
-			{	
+			}else{	
 				// if process has already been completed, move on to the next process
-				if(checkProcessCompleted[i]==1)
-				{
+				if(checkProcessCompleted[i]==1){
 					i++;
 					continue;
 				}
@@ -183,15 +180,13 @@ int mainFunc(int ch)
 
 				// move to the instruction from where execution is to be resumed
 				lineNo=1;
-				while(lineNo<=p_queue[i].insNo)
-				{
+				while(lineNo<=p_queue[i].insNo){
 					fgets(line,sizeof(line),fptr);
 					lineNo++;
 				}
 
 				// execute till time slice exhausts or process is completed
-				for(j=0;j<time_slice && j<(p_queue[i].cpu_burst_time);j++)
-				{
+				for(j=0;j<time_slice && j<(p_queue[i].cpu_burst_time);j++){
 					// write to log file
 					fgets(line, sizeof(line), fptr);
 					p_queue[i].insNo++;
@@ -199,11 +194,11 @@ int mainFunc(int ch)
 						continue;
 					fprintf(fplog, "\nProcess name: %s\n", p_queue[i].p_name);
 					// decode and executed instruction fetched from the process file
-					decodeExec(line, fplog);
+					printf("in loop 3: instr = %s\n", line);
+					if(line[0] != '/'){decodeExec(line, fplog);}
 
 					// if instruction is executed, make checkProcessCompleted entry '1'
-					if(p_queue[i].insNo==p_queue[i].cpu_burst_time)
-					{
+					if(p_queue[i].insNo==p_queue[i].cpu_burst_time){
 						checkProcessCompleted[i]=1;
 						counter++;
 					}
@@ -219,5 +214,5 @@ int mainFunc(int ch)
 		printf("\nLog file 'logs_rr_without_thread' generated!\n");
 	}
 	
-    return 0;
+    	return 0;
 }
